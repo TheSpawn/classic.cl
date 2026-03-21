@@ -190,25 +190,39 @@
             border-color: rgba(200, 148, 10, 0.25);
         }
 
-        .info-card .icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.65rem;
-            display: block;
+        .info-card .card-logo {
+            width: 160px;
+            max-width: 100%;
+            height: auto;
+            filter: invert(1);
+            margin-bottom: 1rem;
         }
 
-        .info-card .label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.3rem;
-        }
-
-        .info-card .value {
-            font-size: 0.95rem;
-            font-weight: 500;
+        .info-card .ig-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--dark-border);
             color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .info-card .ig-link:hover {
+            border-color: var(--gold);
+            background: var(--gold-soft);
+            color: var(--gold-light);
+        }
+
+        .info-card .ig-link svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
         }
 
         /* CTA section */
@@ -344,14 +358,26 @@
 
             <div class="info-grid fade-up">
                 <div class="info-card">
-                    <span class="icon">📣</span>
-                    <span class="label">Disciplina</span>
-                    <span class="value">Cheerleading</span>
+                    <img src="assets/img/CheerleaderClassicLogo.png" alt="Cheerleader Classic" class="card-logo">
+                    <a href="https://www.instagram.com/cheerleaderclassic" class="ig-link" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                        @cheerleaderclassic
+                    </a>
                 </div>
                 <div class="info-card">
-                    <span class="icon">💃</span>
-                    <span class="label">Disciplina</span>
-                    <span class="value">Dance</span>
+                    <img src="assets/img/DanceClassicLogo.png" alt="Dance Classic" class="card-logo">
+                    <a href="https://www.instagram.com/danceclassicchile/" class="ig-link" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                        @danceclassicchile
+                    </a>
                 </div>
             </div>
 
