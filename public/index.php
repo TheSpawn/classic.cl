@@ -1,5 +1,20 @@
 <?php
 
+/*
+ * ---------------------------------------------------------------
+ * MAINTENANCE MODE
+ * ---------------------------------------------------------------
+ * To disable maintenance mode, comment or remove the lines below.
+ */
+$maintenance = true;
+
+if ($maintenance) {
+    header('HTTP/1.1 503 Service Unavailable');
+    header('Retry-After: 86400');
+    readfile(__DIR__ . '/maintenance.html');
+    exit;
+}
+
 use CodeIgniter\Boot;
 use Config\Paths;
 
