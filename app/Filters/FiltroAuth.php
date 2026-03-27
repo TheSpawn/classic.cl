@@ -11,7 +11,7 @@ class FiltroAuth implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (! session()->get('autenticado')) {
-            return redirect()->to('http://' . env('CMS_HOST') . '/login');
+            return redirect()->to('/login');
         }
     }
 

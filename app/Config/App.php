@@ -32,6 +32,8 @@ class App extends BaseConfig
     public array $allowedHostnames = [
         'cms.classic.cl.test',
         'api.classic.cl.test',
+        'cms.classic.cl',
+        'api.classic.cl',
     ];
 
     /**
