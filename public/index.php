@@ -36,8 +36,10 @@ define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
  * --- MODO MANTENIMIENTO ---
  * Comentar este bloque para desactivar
  */
+$host = $_SERVER['HTTP_HOST'] ?? '';
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
-if (! preg_match('#^/(maintenance\.html|assets/)#', $uri)) {
+$excluidos = ['cms.classic.cl', 'api.classic.cl', 'cms.classic.cl.test', 'api.classic.cl.test'];
+if (! in_array($host, $excluidos) && ! preg_match('#^/(maintenance\.html|assets/)#', $uri)) {
     header('HTTP/1.1 503 Service Unavailable');
     header('Retry-After: 3600');
     readfile(__DIR__ . '/maintenance.html');
