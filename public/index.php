@@ -32,6 +32,19 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 
+/*
+ * --- MODO MANTENIMIENTO ---
+ * Comentar este bloque para desactivar
+ */
+$uri = $_SERVER['REQUEST_URI'] ?? '/';
+if (! preg_match('#^/(maintenance\.html|assets/)#', $uri)) {
+    header('HTTP/1.1 503 Service Unavailable');
+    header('Retry-After: 3600');
+    readfile(__DIR__ . '/maintenance.html');
+    exit;
+}
+/* --- FIN MANTENIMIENTO --- */
+
 // Ensure the current directory is pointing to the front controller's directory
 if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
     chdir(FCPATH);
