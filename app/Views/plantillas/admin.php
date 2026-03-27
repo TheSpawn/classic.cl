@@ -212,11 +212,16 @@
             </button>
             <h1><?= $tituloPagina ?? 'Dashboard' ?></h1>
         </div>
-        <?php if ($sitioActivo): ?>
-        <span class="badge" style="background:<?= esc($sitioActivo['sit_color_primario']) ?>">
-            <?= esc($sitioActivo['sit_nombre']) ?>
-        </span>
-        <?php endif; ?>
+        <div class="d-flex align-items-center gap-3">
+            <?php if ($sitioActivo): ?>
+            <span class="badge" style="background:<?= esc($sitioActivo['sit_color_primario']) ?>">
+                <?= esc($sitioActivo['sit_nombre']) ?>
+            </span>
+            <?php endif; ?>
+            <a href="/logout" class="btn btn-sm btn-outline-secondary" title="Cerrar sesion">
+                <i class="bi bi-box-arrow-right"></i> Salir
+            </a>
+        </div>
     </div>
 
     <div class="content-wrapper">
