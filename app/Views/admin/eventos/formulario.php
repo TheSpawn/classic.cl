@@ -56,6 +56,14 @@ $action    = $esEdicion ? "/eventos/actualizar/{$evento['eve_id']}" : '/eventos/
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div class="col-md-2">
+                    <label class="form-label">Vende entradas</label>
+                    <select class="form-select" name="eve_vende_entradas">
+                        <option value="1" <?= old('eve_vende_entradas', $evento['eve_vende_entradas'] ?? 1) == 1 ? 'selected' : '' ?>>Si</option>
+                        <option value="0" <?= old('eve_vende_entradas', $evento['eve_vende_entradas'] ?? 1) == 0 ? 'selected' : '' ?>>No</option>
+                    </select>
+                    <small class="text-muted">Capacitaciones: No</small>
+                </div>
                 <div class="col-md-3">
                     <?= $this->include('admin/_icono_picker') ?>
                 </div>

@@ -101,6 +101,7 @@ class EventoApiController extends BaseApiController
             'icono'             => $e['eve_icono'],
             'imagen'            => $e['eve_imagen'],
             'video'             => $e['eve_video'],
+            'vende_entradas'    => (int) ($e['eve_vende_entradas'] ?? 1),
             'orden'             => (int) $e['eve_orden'],
         ];
     }

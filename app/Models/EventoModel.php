@@ -27,6 +27,7 @@ class EventoModel extends Model
         'eve_icono',
         'eve_imagen',
         'eve_video',
+        'eve_vende_entradas',
         'eve_orden',
         'eve_activo',
     ];

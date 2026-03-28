@@ -50,7 +50,7 @@ class EventoController extends BaseController
         $datos = $this->request->getPost([
             'eve_titulo', 'eve_slug', 'eve_fecha', 'eve_hora', 'eve_ubicacion',
             'eve_venue', 'eve_estado', 'eve_descripcion_corta',
-            'eve_descripcion', 'eve_icono', 'eve_video', 'eve_orden', 'eve_activo',
+            'eve_descripcion', 'eve_icono', 'eve_video', 'eve_vende_entradas', 'eve_orden', 'eve_activo',
         ]);
         $datos['sit_id'] = $sitId;
 
@@ -100,7 +100,7 @@ class EventoController extends BaseController
         $datos = $this->request->getPost([
             'eve_titulo', 'eve_slug', 'eve_fecha', 'eve_hora', 'eve_ubicacion',
             'eve_venue', 'eve_estado', 'eve_descripcion_corta',
-            'eve_descripcion', 'eve_icono', 'eve_video', 'eve_orden', 'eve_activo',
+            'eve_descripcion', 'eve_icono', 'eve_video', 'eve_vende_entradas', 'eve_orden', 'eve_activo',
         ]);
         $datos['eve_id'] = $id;
 
