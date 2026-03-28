@@ -11,8 +11,11 @@ Guia de referencia para el desarrollo presente y futuro del ecosistema Classic.
 - **CMS completo** con 10 modulos CRUD (Sitios, Usuarios, Eventos, Galeria, Alianzas, Documentos, Partners, Precios, Contenido, Hitos)
 - **API REST v1** con 11 endpoints por sitio + cache purge
 - **Portal corporativo** en classic.cl con contenido dinamico desde BD
+- **Showcase de eventos en portal** — muestra proximos eventos de todas las marcas, abre sitio destino en nueva ventana (v1 y v2)
 - **Integracion cheerleaderclassic.cl** — consume API, 100% dinamico
-- **Integracion danceclassic.cl** — consume API, estructura adaptada
+- **Integracion danceclassic.cl** — consume API, detalle de evento 100% dinamico (meta, video, precios, highlights, compartir)
+- **Toggle venta de entradas** — campo `eve_vende_entradas` para diferenciar competencias de capacitaciones
+- **CORS con variantes www** — todos los dominios del ecosistema incluyendo www
 - **Deploy en produccion** con FastPanel, SSL, modo mantenimiento
 - **Manual de usuario** del CMS (public/manual.html)
 
@@ -52,6 +55,12 @@ Guia de referencia para el desarrollo presente y futuro del ecosistema Classic.
 - **Respuesta:** JSON con HTTP status codes estandar
 - **Cache:** Los frontends cachean respuestas (30seg en dev). Purgar desde CMS o via POST `/v1/cache/purgar`
 
+### Eventos
+
+- **Tipos:** Competencias (vende entradas) y capacitaciones (solo inscripcion)
+- **Campo `eve_vende_entradas`:** 1 = Si (default), 0 = No. Los frontends usan este campo para mostrar/ocultar "Comprar Entradas"
+- **API:** Expone `vende_entradas` (0 o 1) en la respuesta JSON de eventos
+
 ### Frontends (cheerleaderclassic.cl, danceclassic.cl, etc.)
 
 - **Library:** `ApiCms.php` en `app/Libraries/` — cliente HTTP que consume la API
@@ -59,6 +68,7 @@ Guia de referencia para el desarrollo presente y futuro del ecosistema Classic.
 - **URLs de archivos:** Resolver con `cmsBaseUrl` para que uploads apunten al CMS
 - **Fallback:** Datos hardcodeados como respaldo si la API falla
 - **No duplicar logica:** Toda logica de negocio va en el CMS, los frontends solo presentan
+- **Detalle de evento:** Dinamico desde API — highlights ("Que Incluye"), meta datos, video embed, precios, otros eventos, compartir
 
 ---
 

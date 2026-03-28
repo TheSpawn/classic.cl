@@ -11,10 +11,12 @@ Administra el contenido de todos los sitios del ecosistema Classic (cheerleaderc
 Una sola instalacion CI4 sirve 3 subdominios mediante hostname routing:
 
 ```
-classic.cl          -> Portal corporativo (publico)
+classic.cl          -> Portal corporativo (publico) + showcase de eventos
 cms.classic.cl      -> Panel de administracion (sesion + auth)
 api.classic.cl      -> API REST JSON (Bearer token)
 ```
+
+El portal corporativo muestra un calendario con los proximos eventos de todas las marcas. Al hacer clic, se abre el sitio de la marca en una nueva ventana.
 
 Los frontends son aplicaciones CI4 independientes que consumen la API:
 
@@ -97,7 +99,7 @@ php spark migrate
 php spark db:seed CmsSeeder
 ```
 
-Esto crea las 15+ tablas y un usuario admin:
+Esto crea las tablas (21 migraciones) y un usuario admin:
 - **Email:** admin@classic.cl
 - **Password:** Classic2025!
 
@@ -130,7 +132,7 @@ classic.cl/
 │   │   ├── portal/             # Paginas publicas
 │   │   └── plantillas/         # Layout admin (sidebar, topbar)
 │   ├── Database/
-│   │   ├── Migrations/         # 20 migraciones
+│   │   ├── Migrations/         # 21 migraciones
 │   │   └── Seeds/              # CmsSeeder
 │   ├── Filters/                # FiltroAuth, FiltroRol
 │   └── Helpers/                # cms_helper.php
@@ -152,7 +154,7 @@ classic.cl/
 |-------------|------------------------------------------------|---------------------------------------|
 | Sitios      | Gestion de sitios web del ecosistema           | cms_sitio                             |
 | Usuarios    | Cuentas de administradores (SUPERADMIN/ADMIN)  | cms_usuario, cms_usuario_sitio        |
-| Eventos     | Competencias con meta, highlights y video      | cms_evento, cms_evento_meta, cms_evento_highlight |
+| Eventos     | Competencias y capacitaciones con meta, highlights, video y control de venta de entradas | cms_evento, cms_evento_meta, cms_evento_highlight |
 | Galeria     | Galerias fotograficas con imagenes             | cms_galeria, cms_imagen               |
 | Alianzas    | Partners internacionales (principal/secundaria)| cms_alianza                           |
 | Documentos  | Archivos descargables por categoria            | cms_documento                         |
@@ -225,6 +227,14 @@ Resumen:
 3. SSL: Let's Encrypt con auto-renovacion
 4. `.env.production` con credenciales de produccion
 5. Migraciones y seed en el servidor
+
+---
+
+## Portal corporativo
+
+El portal en classic.cl incluye una seccion "Proximos Eventos" que muestra automaticamente los eventos de todos los sitios activos (cheerleader, dance, gym, etc.). Cada card enlaza al sitio de destino en una nueva ventana. La seccion solo aparece si hay eventos cargados en el CMS.
+
+Existe en dos versiones: v1 (`/`) y v2 (`/v2`).
 
 ---
 

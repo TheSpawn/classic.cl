@@ -171,6 +171,11 @@
         <div class="campo-desc">Texto completo del evento. Se muestra en la seccion "Acerca del Evento". Acepta etiquetas HTML: <code>&lt;strong&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;&lt;li&gt;</code>.</div>
     </div>
     <div class="campo">
+        <div class="campo-nombre">Vende entradas</div>
+        <div class="campo-desc">Define si el evento tiene venta de entradas al publico. <strong>Si:</strong> el sitio web muestra el boton "Comprar Entradas". <strong>No:</strong> el boton no aparece (usar para capacitaciones, clinicas o cursos donde solo hay inscripcion/registro).</div>
+        <div class="campo-ejemplo">Competencia = Si | Capacitacion o Clinica = No</div>
+    </div>
+    <div class="campo">
         <div class="campo-nombre">Orden</div>
         <div class="campo-desc">Numero para ordenar los eventos en el listado. Menor numero aparece primero.</div>
     </div>
@@ -192,6 +197,8 @@
         <div class="campo-ejemplo">Ej: Centro Cultural Chimkowe | School & All Star | Clasificacion internacional</div>
     </div>
     <div class="tip"><strong>Si no agregas meta datos:</strong> El sistema los genera automaticamente desde los campos fecha, hora y ubicacion del evento.</div>
+
+    <div class="flujo"><strong>Portal corporativo:</strong> Los eventos activos de todos los sitios aparecen automaticamente en la seccion "Proximos Eventos" del portal classic.cl. Al hacer clic, se abre la pagina del evento en el sitio de la marca correspondiente (nueva ventana).</div>
 
     <h3>Highlights</h3>
     <p>Lista de puntos destacados que aparecen en la seccion "Que Incluye" del detalle del evento, cada uno con un check verde.</p>
@@ -461,11 +468,11 @@
     </div>
     <div class="campo">
         <div class="campo-nombre">GET /v1/{sitio}/eventos</div>
-        <div class="campo-desc">Eventos del sitio con meta datos y highlights.</div>
+        <div class="campo-desc">Eventos del sitio con meta datos, highlights y campo <code>vende_entradas</code> (1 = si, 0 = no).</div>
     </div>
     <div class="campo">
         <div class="campo-nombre">GET /v1/{sitio}/eventos/{slug}</div>
-        <div class="campo-desc">Detalle de un evento con precios incluidos.</div>
+        <div class="campo-desc">Detalle de un evento con precios incluidos y campo <code>vende_entradas</code>.</div>
     </div>
     <div class="campo">
         <div class="campo-nombre">GET /v1/{sitio}/precios</div>
