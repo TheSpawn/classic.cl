@@ -34,6 +34,7 @@ class App extends BaseConfig
         'api.classic.cl.test',
         'cms.classic.cl',
         'api.classic.cl',
+        'www.classic.cl',
     ];
 
     /**

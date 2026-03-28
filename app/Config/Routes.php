@@ -14,10 +14,12 @@ $apiHost    = env('API_HOST', 'api.classic.cl.test');
 // ═══════════════════════════════════════════════════════════════
 // PORTAL CORPORATIVO — classic.cl
 // ═══════════════════════════════════════════════════════════════
-$routes->group('', ['hostname' => $portalHost], static function ($routes) {
+$portalRoutes = static function ($routes) {
     $routes->get('/', 'Portal\InicioController::index');
     $routes->get('v2', 'Portal\InicioController::v2');
-});
+};
+$routes->group('', ['hostname' => $portalHost], $portalRoutes);
+$routes->group('', ['hostname' => 'www.' . $portalHost], $portalRoutes);
 
 // ═══════════════════════════════════════════════════════════════
 // CMS — cms.classic.cl (Login público, resto protegido)
