@@ -39,7 +39,16 @@ define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 $host = $_SERVER['HTTP_HOST'] ?? '';
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $excluidos = ['cms.classic.cl', 'api.classic.cl', 'cms.classic.cl.test', 'api.classic.cl.test'];
-if (! in_array($host, $excluidos) && ! preg_match('#^/(maintenance\.html|assets/)#', $uri)) {
+
+// Preview secreto: agregar ?preview=classic2026 para saltar mantenimiento y guardar cookie
+if (isset($_GET['preview']) && $_GET['preview'] === 'classic2026') {
+    setcookie('preview_mode', '1', time() + 86400, '/');
+    $_COOKIE['preview_mode'] = '1';
+}
+
+$enPreview = ($_COOKIE['preview_mode'] ?? '') === '1';
+
+if (! $enPreview && ! in_array($host, $excluidos) && ! preg_match('#^/(maintenance\.html|assets/)#', $uri)) {
     header('HTTP/1.1 503 Service Unavailable');
     header('Retry-After: 3600');
     readfile(__DIR__ . '/maintenance.html');
