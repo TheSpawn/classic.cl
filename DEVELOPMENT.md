@@ -15,6 +15,7 @@ Guia de referencia para el desarrollo presente y futuro del ecosistema Classic.
 - **Integracion cheerleaderclassic.cl** — consume API, 100% dinamico
 - **Integracion danceclassic.cl** — consume API, detalle de evento 100% dinamico (meta, video, precios, highlights, compartir)
 - **Toggle venta de entradas** — campo `eve_vende_entradas` para diferenciar competencias de capacitaciones
+- **Rango de fechas y horarios** — campos `eve_fecha_fin` y `eve_hora_fin` para eventos multi-dia. Frontends formatean automaticamente ("17 y 18 de Octubre")
 - **CORS con variantes www** — todos los dominios del ecosistema incluyendo www
 - **Deploy en produccion** con FastPanel, SSL, modo mantenimiento
 - **Manual de usuario** del CMS (public/manual.html)
@@ -59,7 +60,10 @@ Guia de referencia para el desarrollo presente y futuro del ecosistema Classic.
 
 - **Tipos:** Competencias (vende entradas) y capacitaciones (solo inscripcion)
 - **Campo `eve_vende_entradas`:** 1 = Si (default), 0 = No. Los frontends usan este campo para mostrar/ocultar "Comprar Entradas"
-- **API:** Expone `vende_entradas` (0 o 1) en la respuesta JSON de eventos
+- **Rango de fechas:** `eve_fecha` (inicio) + `eve_fecha_fin` (fin, opcional). Si no hay fecha fin, es evento de un dia
+- **Rango de horarios:** `eve_hora` (inicio) + `eve_hora_fin` (aprox, opcional)
+- **API:** Expone `vende_entradas`, `fecha_fin` y `hora_fin` en la respuesta JSON de eventos
+- **Frontends:** Formatean automaticamente: "17 de Octubre" (1 dia), "17 y 18 de Octubre" (mismo mes), "30 Sept al 2 Oct" (distinto mes). Horario: "09:00 a 20:00 hrs"
 
 ### Frontends (cheerleaderclassic.cl, danceclassic.cl, etc.)
 

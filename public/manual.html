@@ -125,13 +125,23 @@
         <div class="campo-ejemplo">Ej: super-nationals-2026</div>
     </div>
     <div class="campo">
-        <div class="campo-nombre">Fecha</div>
-        <div class="campo-desc">Fecha del evento en formato YYYY-MM-DD (el selector de fecha lo maneja automaticamente).</div>
+        <div class="campo-nombre">Fecha inicio</div>
+        <div class="campo-desc">Fecha de inicio del evento (el selector de fecha lo maneja automaticamente).</div>
     </div>
     <div class="campo">
-        <div class="campo-nombre">Hora</div>
-        <div class="campo-desc">Hora de inicio del evento.</div>
+        <div class="campo-nombre">Fecha fin <span class="campo-tipo">opcional</span></div>
+        <div class="campo-desc">Fecha de termino para eventos de mas de un dia. Si se deja vacio, se asume que el evento es de un solo dia. Los sitios web formatean automaticamente el rango.</div>
+        <div class="campo-ejemplo">1 dia: solo fecha inicio → "17 de Octubre, 2026" | 2 dias mismo mes: → "17 y 18 de Octubre, 2026" | Meses distintos: → "30 de Septiembre al 2 de Octubre, 2026"</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Hora inicio</div>
+        <div class="campo-desc">Hora de apertura o inicio del evento.</div>
         <div class="campo-ejemplo">Ej: 09:00</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Hora fin <span class="campo-tipo">opcional, aproximada</span></div>
+        <div class="campo-desc">Hora estimada de termino. Si se completa, el sitio web muestra el rango horario.</div>
+        <div class="campo-ejemplo">Ej: 20:00 → se mostrara como "09:00 a 20:00 hrs"</div>
     </div>
     <div class="campo">
         <div class="campo-nombre">Ubicacion</div>

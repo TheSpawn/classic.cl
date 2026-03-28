@@ -132,7 +132,7 @@ classic.cl/
 │   │   ├── portal/             # Paginas publicas
 │   │   └── plantillas/         # Layout admin (sidebar, topbar)
 │   ├── Database/
-│   │   ├── Migrations/         # 21 migraciones
+│   │   ├── Migrations/         # 22 migraciones
 │   │   └── Seeds/              # CmsSeeder
 │   ├── Filters/                # FiltroAuth, FiltroRol
 │   └── Helpers/                # cms_helper.php
@@ -154,7 +154,7 @@ classic.cl/
 |-------------|------------------------------------------------|---------------------------------------|
 | Sitios      | Gestion de sitios web del ecosistema           | cms_sitio                             |
 | Usuarios    | Cuentas de administradores (SUPERADMIN/ADMIN)  | cms_usuario, cms_usuario_sitio        |
-| Eventos     | Competencias y capacitaciones con meta, highlights, video y control de venta de entradas | cms_evento, cms_evento_meta, cms_evento_highlight |
+| Eventos     | Competencias y capacitaciones con rango de fechas, horarios, meta, highlights, video y control de venta de entradas | cms_evento, cms_evento_meta, cms_evento_highlight |
 | Galeria     | Galerias fotograficas con imagenes             | cms_galeria, cms_imagen               |
 | Alianzas    | Partners internacionales (principal/secundaria)| cms_alianza                           |
 | Documentos  | Archivos descargables por categoria            | cms_documento                         |
