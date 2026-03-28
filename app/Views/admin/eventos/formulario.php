@@ -133,11 +133,51 @@ $action    = $esEdicion ? "/eventos/actualizar/{$evento['eve_id']}" : '/eventos/
             </button>
         </div>
         <div class="card-body">
+            <div class="mb-3 p-2 bg-light rounded">
+                <small class="text-muted d-block mb-2">Iconos frecuentes <span class="text-muted">(clic para copiar al último meta)</span>:</small>
+                <div class="d-flex flex-wrap gap-1">
+                    <?php
+                    $iconosMeta = [
+                        'bi-calendar-event' => 'Calendario',
+                        'bi-clock' => 'Reloj',
+                        'bi-geo-alt-fill' => 'Ubicación',
+                        'bi-building' => 'Recinto',
+                        'bi-check-circle-fill' => 'Visto bueno',
+                        'bi-people-fill' => 'Personas',
+                        'bi-trophy-fill' => 'Trofeo',
+                        'bi-star-fill' => 'Estrella',
+                        'bi-mortarboard-fill' => 'Educación',
+                        'bi-globe2' => 'Mundo',
+                        'bi-ticket-perforated' => 'Ticket',
+                        'bi-currency-dollar' => 'Precio',
+                        'bi-flag-fill' => 'Bandera',
+                        'bi-megaphone-fill' => 'Megáfono',
+                        'bi-music-note-beamed' => 'Música',
+                        'bi-shield-check' => 'Certificado',
+                        'bi-lightning-fill' => 'Energía',
+                        'bi-heart-fill' => 'Corazón',
+                        'bi-book' => 'Libro',
+                        'bi-camera-fill' => 'Cámara',
+                    ];
+                    foreach ($iconosMeta as $clase => $nombre):
+                    ?>
+                    <button type="button" class="btn btn-outline-secondary btn-sm px-2 py-1"
+                            title="<?= $nombre ?> — <?= $clase ?>"
+                            onclick="copiarIconoMeta('<?= $clase ?>')">
+                        <i class="<?= $clase ?>"></i>
+                        <small class="d-none d-md-inline ms-1"><?= $nombre ?></small>
+                    </button>
+                    <?php endforeach; ?>
+                </div>
+            </div>
             <template x-for="(meta, i) in metaItems" :key="i">
                 <div class="row g-2 mb-2 align-items-center">
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="met_icono[]"
-                               x-model="meta.icono" placeholder="bi-calendar">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text" x-html="meta.icono ? '<i class=&quot;'+meta.icono+'&quot;></i>' : '<i class=&quot;bi bi-question-circle&quot;></i>'"></span>
+                            <input type="text" class="form-control form-control-sm" name="met_icono[]"
+                                   x-model="meta.icono" placeholder="bi-calendar">
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <input type="text" class="form-control form-control-sm" name="met_texto[]"
@@ -192,6 +232,11 @@ $action    = $esEdicion ? "/eventos/actualizar/{$evento['eve_id']}" : '/eventos/
 
 <?= $this->section('scripts') ?>
 <script>
+function copiarIconoMeta(clase) {
+    const comp = document.querySelector('[x-data]').__x.$data;
+    comp.setUltimoMetaIcono(clase);
+}
+
 function eventoForm() {
     return {
         metaItems: <?= json_encode(array_map(fn($m) => ['icono' => $m['met_icono'], 'texto' => $m['met_texto']], $metas)) ?>,
@@ -201,6 +246,18 @@ function eventoForm() {
         },
         agregarHighlight() {
             this.highlightItems.push({ texto: '' });
+        },
+        setUltimoMetaIcono(clase) {
+            if (this.metaItems.length === 0) {
+                this.metaItems.push({ icono: clase, texto: '' });
+            } else {
+                const ultimo = this.metaItems[this.metaItems.length - 1];
+                if (ultimo.icono === '' && ultimo.texto === '') {
+                    ultimo.icono = clase;
+                } else {
+                    this.metaItems.push({ icono: clase, texto: '' });
+                }
+            }
         }
     };
 }
