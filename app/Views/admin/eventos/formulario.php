@@ -24,15 +24,25 @@ $action    = $esEdicion ? "/eventos/actualizar/{$evento['eve_id']}" : '/eventos/
                     <input type="text" class="form-control" name="eve_slug"
                            value="<?= old('eve_slug', $evento['eve_slug'] ?? '') ?>" required>
                 </div>
-                <div class="col-md-3">
-                    <label class="form-label">Fecha</label>
+                <div class="col-md-2">
+                    <label class="form-label">Fecha inicio</label>
                     <input type="date" class="form-control" name="eve_fecha"
                            value="<?= old('eve_fecha', $evento['eve_fecha'] ?? '') ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Hora</label>
+                    <label class="form-label">Fecha fin <small class="text-muted fw-normal">(opcional)</small></label>
+                    <input type="date" class="form-control" name="eve_fecha_fin"
+                           value="<?= old('eve_fecha_fin', $evento['eve_fecha_fin'] ?? '') ?>">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Hora inicio</label>
                     <input type="time" class="form-control" name="eve_hora"
                            value="<?= old('eve_hora', $evento['eve_hora'] ?? '') ?>">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Hora fin <small class="text-muted fw-normal">(aprox.)</small></label>
+                    <input type="time" class="form-control" name="eve_hora_fin"
+                           value="<?= old('eve_hora_fin', $evento['eve_hora_fin'] ?? '') ?>">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Ubicacion</label>
