@@ -37,12 +37,20 @@ class Cors extends BaseConfig
         'allowedOrigins' => [
             'http://cheerleaderclassic.cl',
             'https://cheerleaderclassic.cl',
+            'http://www.cheerleaderclassic.cl',
+            'https://www.cheerleaderclassic.cl',
             'http://danceclassic.cl',
             'https://danceclassic.cl',
+            'http://www.danceclassic.cl',
+            'https://www.danceclassic.cl',
             'http://gymclassic.cl',
             'https://gymclassic.cl',
+            'http://www.gymclassic.cl',
+            'https://www.gymclassic.cl',
             'http://classic.cl',
             'https://classic.cl',
+            'http://www.classic.cl',
+            'https://www.classic.cl',
         ],
 
         /**
