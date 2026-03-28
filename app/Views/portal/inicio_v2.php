@@ -139,6 +139,40 @@
         .testimonial-quote .gold { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
         .testimonial-sub { color:var(--gray); font-size:.9rem; }
 
+        /* ── Eventos ── */
+        .eventos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+        .evento-card-link { text-decoration:none; color:inherit; display:block; height:100%; }
+        .evento-card { background:var(--black-card); border:1px solid rgba(255,255,255,.05); border-radius:16px; overflow:hidden; height:100%; transition:all .4s; position:relative; }
+        .evento-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--gold-gradient); transform:scaleX(0); transition:transform .4s; z-index:2; }
+        .evento-card:hover { border-color:rgba(212,160,23,.2); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,.4); }
+        .evento-card:hover::before { transform:scaleX(1); }
+        .evento-card-img { position:relative; height:190px; background-size:cover; background-position:center; }
+        .evento-card:hover .evento-card-img { filter:brightness(1.08); }
+        .evento-card-img--placeholder { background:linear-gradient(135deg, var(--black-soft) 0%, rgba(255,255,255,.03) 100%); }
+        .evento-card-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,.9) 0%, transparent 60%); }
+        .evento-card-date { position:absolute; bottom:.75rem; left:1rem; display:flex; align-items:baseline; gap:.5rem; z-index:1; }
+        .evento-card-day { font-size:2.2rem; font-weight:900; line-height:1; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .evento-card-month { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.55); }
+        .evento-card-body { padding:1.2rem 1.5rem 1.5rem; }
+        .evento-card-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+        .evento-card-badge { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:.2rem .55rem; border-radius:100px; }
+        .evento-card-badge.pronto { background:rgba(212,160,23,.1); color:var(--gold-light); }
+        .evento-card-badge.abierto { background:rgba(34,197,94,.1); color:#22c55e; }
+        .evento-card-badge.cerrado { background:rgba(239,68,68,.1); color:#ef4444; }
+        .evento-card-marca { font-size:.6rem; font-weight:600; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; }
+        .evento-card-title { font-weight:800; font-size:1.1rem; margin-bottom:.4rem; line-height:1.3; }
+        .evento-card-location { font-size:.8rem; color:var(--gray); display:flex; align-items:center; gap:.3rem; }
+        .evento-card-location i { color:var(--gold); font-size:.85rem; }
+        .evento-card-action { margin-top:.8rem; font-size:.75rem; font-weight:600; color:var(--gold); display:flex; align-items:center; gap:.3rem; transition:gap .2s; }
+        .evento-card:hover .evento-card-action { gap:.6rem; color:var(--gold-light); }
+
+        @media(max-width:768px) {
+            .eventos-grid { grid-template-columns:1fr; }
+        }
+        @media(min-width:769px) and (max-width:1024px) {
+            .eventos-grid { grid-template-columns:repeat(2,1fr); }
+        }
+
         /* ── Contacto ── */
         .contacto-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
         .contacto-item { display:flex; gap:1rem; align-items:flex-start; }
@@ -176,6 +210,7 @@
         <a href="/"><img src="/assets/img/ClassicEventosLogoBlanco.webp" alt="Classic Producciones" class="nav-logo"></a>
         <div class="nav-links">
             <a href="#servicios">Que hacemos</a>
+            <a href="#eventos">Eventos</a>
             <a href="#marcas">Marcas</a>
             <a href="#plataformas">Plataformas</a>
             <a href="#alianzas">Alianzas</a>
@@ -263,6 +298,66 @@
         <?php endforeach; ?>
     </div>
 </section>
+
+<!-- Eventos -->
+<?php if (! empty($eventos)): ?>
+<section class="section" id="eventos">
+    <div class="section-inner">
+        <div class="section-tag">Proximos eventos</div>
+        <h2 class="section-title">Calendario del ecosistema</h2>
+        <p class="section-sub">Conoce los proximos campeonatos, capacitaciones y encuentros de nuestras marcas.</p>
+
+        <div class="eventos-grid">
+            <?php
+            $meses = [1=>'ENE',2=>'FEB',3=>'MAR',4=>'ABR',5=>'MAY',6=>'JUN',7=>'JUL',8=>'AGO',9=>'SEP',10=>'OCT',11=>'NOV',12=>'DIC'];
+            $estadoLabel = ['PRONTO'=>'Proximamente','ABIERTO'=>'Inscripciones abiertas','CERRADO'=>'Inscripciones cerradas'];
+            foreach ($eventos as $ev):
+                $sitio = $ev['_sitio'] ?? null;
+                $dominio = $sitio['sit_dominio'] ?? '#';
+                $url = 'https://' . $dominio . '/eventos/' . $ev['eve_slug'];
+                $ts = $ev['eve_fecha'] ? strtotime($ev['eve_fecha']) : null;
+                $day = $ts ? date('j', $ts) : '';
+                $mes = $ts ? ($meses[(int)date('n', $ts)] ?? '') : '';
+                $year = $ts ? date('Y', $ts) : '';
+            ?>
+            <a href="<?= esc($url) ?>" target="_blank" rel="noopener" class="evento-card-link">
+                <div class="evento-card">
+                    <?php if (! empty($ev['eve_imagen'])): ?>
+                    <div class="evento-card-img" style="background-image:url('/<?= esc($ev['eve_imagen']) ?>');">
+                    <?php else: ?>
+                    <div class="evento-card-img evento-card-img--placeholder">
+                    <?php endif; ?>
+                        <div class="evento-card-overlay"></div>
+                        <div class="evento-card-date">
+                            <span class="evento-card-day"><?= $day ?></span>
+                            <span class="evento-card-month"><?= $mes ?> <?= $year ?></span>
+                        </div>
+                    </div>
+                    <div class="evento-card-body">
+                        <div class="evento-card-row">
+                            <span class="evento-card-badge <?= strtolower($ev['eve_estado'] ?? 'pronto') ?>">
+                                <?= $estadoLabel[$ev['eve_estado'] ?? 'PRONTO'] ?? 'Proximamente' ?>
+                            </span>
+                            <?php if ($sitio): ?>
+                            <span class="evento-card-marca"><?= esc($sitio['sit_nombre']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <h4 class="evento-card-title"><?= esc($ev['eve_titulo']) ?></h4>
+                        <?php if (! empty($ev['eve_venue']) || ! empty($ev['eve_ubicacion'])): ?>
+                        <div class="evento-card-location">
+                            <i class="bi bi-geo-alt"></i>
+                            <?= esc($ev['eve_venue']) ?><?= (!empty($ev['eve_venue']) && !empty($ev['eve_ubicacion'])) ? ', ' : '' ?><?= esc($ev['eve_ubicacion']) ?>
+                        </div>
+                        <?php endif; ?>
+                        <div class="evento-card-action">Ver evento <i class="bi bi-arrow-up-right"></i></div>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- Marcas -->
 <section class="section" id="marcas">

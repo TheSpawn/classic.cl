@@ -22,9 +22,11 @@ class InicioController extends BaseController
     public function v2()
     {
         $sitios = (new SitioModel())->obtenerActivos();
+        $eventos = $this->obtenerEventosPortal($sitios);
 
         return view('portal/inicio_v2', [
-            'sitios' => $sitios,
+            'sitios'  => $sitios,
+            'eventos' => $eventos,
         ]);
     }
 
