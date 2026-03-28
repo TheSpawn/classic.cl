@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario — Classic CMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root { --gold: #D4A017; --dark: #1a1a2e; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8f9fa; }
+        .sidebar-manual { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: var(--dark); color: #ccc; overflow-y: auto; padding: 1.5rem; }
+        .sidebar-manual h5 { color: #fff; font-size: .9rem; font-weight: 700; margin-bottom: 1rem; }
+        .sidebar-manual .nav-link { color: #adb5bd; font-size: .8rem; padding: .3rem 0; }
+        .sidebar-manual .nav-link:hover { color: var(--gold); }
+        .sidebar-manual .nav-header { font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; color: #6c757d; margin-top: 1.2rem; margin-bottom: .4rem; }
+        .main-manual { margin-left: 280px; padding: 3rem; max-width: 900px; }
+        .main-manual h1 { font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: .5rem; }
+        .main-manual h2 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-top: 3rem; border-bottom: 2px solid var(--gold); padding-bottom: .5rem; }
+        .main-manual h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; color: #333; }
+        .campo { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 1rem 1.2rem; margin: .8rem 0; }
+        .campo-nombre { font-weight: 700; font-size: .9rem; color: var(--dark); }
+        .campo-tipo { font-size: .7rem; color: #6c757d; text-transform: uppercase; letter-spacing: .05em; }
+        .campo-desc { font-size: .85rem; color: #555; margin-top: .3rem; }
+        .campo-ejemplo { font-size: .8rem; color: var(--gold); font-style: italic; }
+        .tip { background: #fff3cd; border-left: 4px solid var(--gold); padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: .85rem; }
+        .warning { background: #f8d7da; border-left: 4px solid #dc3545; padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: .85rem; }
+        .flujo { background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: .85rem; }
+        code { background: #e9ecef; padding: .15rem .4rem; border-radius: 4px; font-size: .8rem; }
+        @media (max-width: 768px) {
+            .sidebar-manual { display: none; }
+            .main-manual { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="sidebar-manual">
+    <h5><i class="bi bi-grid-fill me-1"></i> Classic CMS</h5>
+    <small class="text-muted">Manual de Usuario</small>
+
+    <div class="nav-header">General</div>
+    <a href="#acceso" class="nav-link">Acceso al CMS</a>
+    <a href="#dashboard" class="nav-link">Dashboard</a>
+    <a href="#sitio-activo" class="nav-link">Selector de sitio</a>
+    <a href="#perfil" class="nav-link">Mi Perfil</a>
+
+    <div class="nav-header">Contenido</div>
+    <a href="#eventos" class="nav-link">Eventos</a>
+    <a href="#precios" class="nav-link">Precios</a>
+    <a href="#alianzas" class="nav-link">Alianzas</a>
+    <a href="#galeria" class="nav-link">Galeria</a>
+    <a href="#documentos" class="nav-link">Documentos</a>
+    <a href="#partners" class="nav-link">Partners</a>
+    <a href="#contenido" class="nav-link">Contenido</a>
+    <a href="#hitos" class="nav-link">Hitos / Timeline</a>
+
+    <div class="nav-header">Administracion</div>
+    <a href="#sitios" class="nav-link">Sitios</a>
+    <a href="#usuarios" class="nav-link">Usuarios</a>
+
+    <div class="nav-header">Tecnico</div>
+    <a href="#api" class="nav-link">API REST</a>
+    <a href="#cache" class="nav-link">Cache</a>
+    <a href="#archivos" class="nav-link">Archivos subidos</a>
+</nav>
+
+<div class="main-manual">
+
+    <h1>Manual de Usuario</h1>
+    <p class="text-muted">CMS multi-sitio de Classic Producciones. Este manual explica cada seccion, cada campo y como configurar el contenido de los sitios web del ecosistema.</p>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="acceso"><i class="bi bi-box-arrow-in-right me-2"></i>Acceso al CMS</h2>
+
+    <p>URL: <code>https://cms.classic.cl/login</code></p>
+
+    <div class="campo">
+        <div class="campo-nombre">Email</div>
+        <div class="campo-desc">Email registrado del usuario administrador.</div>
+        <div class="campo-ejemplo">Ej: admin@classic.cl</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Contrasena</div>
+        <div class="campo-desc">Contrasena del usuario. Se puede cambiar desde Mi Perfil.</div>
+    </div>
+
+    <div class="tip"><strong>Roles:</strong> SUPERADMIN (acceso total), ADMIN (gestiona contenido de sitios asignados), EDITOR (solo edita contenido).</div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="dashboard"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h2>
+    <p>Pantalla principal que muestra los contadores de cada modulo para el sitio activo: eventos, galerias, alianzas, documentos, partners, precios e hitos. Haz clic en cualquier tarjeta para ir al modulo.</p>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="sitio-activo"><i class="bi bi-diagram-3 me-2"></i>Selector de sitio</h2>
+    <p>En la parte superior del sidebar hay un selector desplegable. <strong>Debes seleccionar un sitio antes de gestionar contenido.</strong> Todo el contenido que crees (eventos, alianzas, precios, etc.) queda asociado al sitio seleccionado.</p>
+    <div class="flujo"><strong>Sitios disponibles:</strong> Cheerleader Classic, Dance Classic, Gym Classic (u otros que se agreguen).</div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="perfil"><i class="bi bi-person-gear me-2"></i>Mi Perfil</h2>
+    <p>Permite ver tus datos y cambiar tu contrasena. Accesible desde el sidebar o el boton "Salir" en la barra superior.</p>
+    <div class="campo">
+        <div class="campo-nombre">Contrasena actual</div>
+        <div class="campo-desc">Tu contrasena actual para verificar identidad.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Nueva contrasena</div>
+        <div class="campo-desc">Minimo 6 caracteres.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="eventos"><i class="bi bi-calendar-event me-2"></i>Eventos</h2>
+    <p>Los eventos son el contenido principal. Cada evento aparece en la pagina de eventos del sitio web y tiene su propia pagina de detalle.</p>
+
+    <h3>Campos del formulario</h3>
+
+    <div class="campo">
+        <div class="campo-nombre">Titulo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Nombre completo del evento.</div>
+        <div class="campo-ejemplo">Ej: Classic Super Nationals Cheer 2026</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Slug <span class="campo-tipo">obligatorio, unico</span></div>
+        <div class="campo-desc">Identificador para la URL. Solo letras minusculas, numeros y guiones. Sin espacios ni caracteres especiales.</div>
+        <div class="campo-ejemplo">Ej: super-nationals-2026</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Fecha</div>
+        <div class="campo-desc">Fecha del evento en formato YYYY-MM-DD (el selector de fecha lo maneja automaticamente).</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Hora</div>
+        <div class="campo-desc">Hora de inicio del evento.</div>
+        <div class="campo-ejemplo">Ej: 09:00</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Ubicacion</div>
+        <div class="campo-desc">Direccion o ciudad donde se realiza el evento. Aparece en el sidebar del detalle como "Direccion".</div>
+        <div class="campo-ejemplo">Ej: Avenida Grecia #8787, Penalolen</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Venue</div>
+        <div class="campo-desc">Nombre del recinto. Aparece en el sidebar del detalle como "Recinto".</div>
+        <div class="campo-ejemplo">Ej: Centro Cultural Chimkowe</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Estado</div>
+        <div class="campo-desc">Define el estado visual del evento en el sitio web.</div>
+        <div class="campo-ejemplo">PRONTO = badge "Proximamente" | ABIERTO = badge "Inscripciones abiertas" + boton inscripcion | CERRADO = badge "Cerrado"</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Icono</div>
+        <div class="campo-desc">Icono de Bootstrap Icons que representa al evento. Usa el boton <i class="bi bi-question-circle"></i> para abrir la guia visual de iconos.</div>
+        <div class="campo-ejemplo">Ej: bi-trophy-fill</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Imagen <span class="campo-tipo">1920x800 px recomendado</span></div>
+        <div class="campo-desc">Imagen principal del evento. Se usa como fondo del hero en la pagina de detalle. Formato WebP recomendado.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Video</div>
+        <div class="campo-desc">URL de YouTube o Vimeo, o subir un archivo MP4 (max 50MB, H.264, 1280x720). Se muestra en la pagina de detalle del evento.</div>
+        <div class="campo-ejemplo">Ej: https://www.youtube.com/watch?v=XXXXXXXXXXX</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion corta <span class="campo-tipo">texto plano</span></div>
+        <div class="campo-desc">Resumen breve del evento. Se muestra en tarjetas de listado, hero y meta description para SEO. <strong>No acepta HTML.</strong></div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion completa <span class="campo-tipo">acepta HTML</span></div>
+        <div class="campo-desc">Texto completo del evento. Se muestra en la seccion "Acerca del Evento". Acepta etiquetas HTML: <code>&lt;strong&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;&lt;li&gt;</code>.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Orden</div>
+        <div class="campo-desc">Numero para ordenar los eventos en el listado. Menor numero aparece primero.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Activo</div>
+        <div class="campo-desc">Si = visible en el sitio web. No = oculto.</div>
+    </div>
+
+    <h3>Meta datos (info icons)</h3>
+    <p>Son iconos informativos que aparecen debajo de la descripcion corta en la tarjeta del evento. Cada meta dato tiene un icono y un texto.</p>
+    <div class="campo">
+        <div class="campo-nombre">Icono</div>
+        <div class="campo-desc">Clase de Font Awesome para el icono.</div>
+        <div class="campo-ejemplo">Ej: fa-solid fa-calendar, fa-solid fa-building, fa-solid fa-globe</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Texto</div>
+        <div class="campo-desc">Texto informativo breve.</div>
+        <div class="campo-ejemplo">Ej: Centro Cultural Chimkowe | School & All Star | Clasificacion internacional</div>
+    </div>
+    <div class="tip"><strong>Si no agregas meta datos:</strong> El sistema los genera automaticamente desde los campos fecha, hora y ubicacion del evento.</div>
+
+    <h3>Highlights</h3>
+    <p>Lista de puntos destacados que aparecen en la seccion "Que Incluye" del detalle del evento, cada uno con un check verde.</p>
+    <div class="campo">
+        <div class="campo-nombre">Texto del highlight</div>
+        <div class="campo-desc">Texto corto y directo sobre lo que incluye o destaca del evento.</div>
+        <div class="campo-ejemplo">Ej: Divisiones School y All Star | Normativa IASF oficial | Clasificacion a The Summit</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="precios"><i class="bi bi-currency-dollar me-2"></i>Precios</h2>
+    <p>Los precios estan vinculados a un evento especifico. Representan los tiers de inscripcion (Anticipado, On-Time, Final).</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Evento <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Selecciona a cual evento pertenece este precio.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Nombre del tier <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Nombre del periodo de precio.</div>
+        <div class="campo-ejemplo">Ej: Anticipado, On-Time, Final</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Monto <span class="campo-tipo">obligatorio, numero entero</span></div>
+        <div class="campo-desc">Valor en la moneda seleccionada. Sin puntos ni comas.</div>
+        <div class="campo-ejemplo">Ej: 35000 (se mostrara como $35.000)</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Moneda</div>
+        <div class="campo-desc">CLP (Pesos chilenos) o USD (Dolares).</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Fecha inicio / Fecha fin</div>
+        <div class="campo-desc">Periodo de vigencia del precio. El sitio web muestra automaticamente si el periodo esta activo, proximo o cerrado segun la fecha actual.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Caracteristicas</div>
+        <div class="campo-desc">Lista de lo que incluye este precio. Se muestra como bullets en la tarjeta del precio.</div>
+        <div class="campo-ejemplo">Ej: Inscripcion al campeonato | Acceso a instalaciones | Certificado de participacion</div>
+    </div>
+    <div class="tip"><strong>Ahorro automatico:</strong> El sistema calcula automaticamente el ahorro respecto al precio mas alto y lo muestra como badge.</div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="alianzas"><i class="bi bi-globe2 me-2"></i>Alianzas</h2>
+    <p>Organizaciones internacionales con las que se tiene alianza. Se muestran en la pagina de alianzas y en la seccion del home.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Nombre <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: The Summit, AIA, JAMfest</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Tipo</div>
+        <div class="campo-desc"><strong>Principal:</strong> se muestra como card grande en la pagina y en el home. <strong>Secundaria:</strong> se muestra como logo pequeno.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Invitaciones</div>
+        <div class="campo-desc">Numero de invitaciones disponibles. Se muestra como badge.</div>
+        <div class="campo-ejemplo">Ej: 5, 20, 30</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Logo <span class="campo-tipo">400x400 px recomendado</span></div>
+        <div class="campo-desc">Logo de la organizacion. Formato WebP o PNG con fondo transparente.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Ubicacion</div>
+        <div class="campo-ejemplo">Ej: Orlando, FL, USA | Montreal, Canada</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Fechas</div>
+        <div class="campo-desc">Texto libre con las fechas del evento internacional.</div>
+        <div class="campo-ejemplo">Ej: 23 al 26 de abril, 2027</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion</div>
+        <div class="campo-desc">Texto descriptivo de la alianza. Se muestra en la pagina de detalle de alianzas.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Estadisticas</div>
+        <div class="campo-desc">Pares de valor + etiqueta que se muestran como numeros destacados.</div>
+        <div class="campo-ejemplo">Ej: 600+ → Equipos | 20K+ → Atletas | 70+ → Paises</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="galeria"><i class="bi bi-images me-2"></i>Galeria</h2>
+    <p>Albumes de fotos organizados por evento o temporada.</p>
+
+    <h3>Album</h3>
+    <div class="campo">
+        <div class="campo-nombre">Titulo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: Super Nationals 2024, Temporada 2025</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion</div>
+        <div class="campo-desc">Texto descriptivo del album.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Orden / Activo</div>
+        <div class="campo-desc">Orden de aparicion y visibilidad.</div>
+    </div>
+
+    <h3>Imagenes (dentro de un album)</h3>
+    <p>Accede a las imagenes haciendo clic en el boton <i class="bi bi-images"></i> del album.</p>
+    <div class="campo">
+        <div class="campo-nombre">Archivo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Imagen en formato WebP, JPG o PNG. Se sube al servidor del CMS.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Titulo / Alt text</div>
+        <div class="campo-desc">Texto alternativo para accesibilidad y SEO.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="documentos"><i class="bi bi-file-earmark-pdf me-2"></i>Documentos</h2>
+    <p>Archivos descargables como reglamentos, formularios de inscripcion, divisiones. Se muestran en la pagina de reglamentos del sitio.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Titulo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: Reglas IASF Cheer 2025-2028</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Categoria</div>
+        <div class="campo-desc">Agrupacion del documento. El sitio asigna un icono automaticamente segun la categoria.</div>
+        <div class="campo-ejemplo">Ej: IASF, School, All Star, Inscripcion, Participacion</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Archivo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">PDF, DOC, DOCX, XLS o XLSX. Se sube al servidor del CMS.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion</div>
+        <div class="campo-desc">Breve explicacion del contenido del documento.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="partners"><i class="bi bi-building me-2"></i>Partners</h2>
+    <p>Sponsors y marcas asociadas. Sus logos aparecen en el marquee (carrusel) del home.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Nombre <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: IASF, Action Travel, GymClassic</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Logo <span class="campo-tipo">300x120 px recomendado</span></div>
+        <div class="campo-desc">Logo del partner. Fondo transparente recomendado (PNG o WebP).</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">URL</div>
+        <div class="campo-desc">Sitio web del partner (opcional).</div>
+    </div>
+    <div class="tip"><strong>Multi-sitio:</strong> Un partner se crea una vez y se asocia al sitio activo. El mismo partner puede aparecer en multiples sitios.</div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="contenido"><i class="bi bi-text-paragraph me-2"></i>Contenido</h2>
+    <p>Contenido generico organizado por seccion y clave. Permite editar textos de las paginas sin tocar codigo.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Seccion <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Nombre de la seccion de la pagina.</div>
+        <div class="campo-ejemplo">Ej: hero, nosotros, inscripcion, contacto</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Clave <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-desc">Identificador del campo dentro de la seccion.</div>
+        <div class="campo-ejemplo">Ej: titulo, subtitulo, texto, direccion, telefono</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Tipo</div>
+        <div class="campo-desc"><strong>TEXTO:</strong> texto plano. <strong>HTML:</strong> acepta etiquetas HTML. <strong>JSON:</strong> datos estructurados.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Valor</div>
+        <div class="campo-desc">El contenido propiamente tal.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="hitos"><i class="bi bi-clock-history me-2"></i>Hitos / Timeline</h2>
+    <p>Momentos historicos que se muestran en la pagina de "Especial 20 Anos" como timeline visual.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Titulo <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: El Inicio de un Sueno, The Cheerleading Worlds</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Ano <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: 2006, 2014, 2026</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Icono</div>
+        <div class="campo-desc">Icono de Bootstrap Icons. Usa la guia visual para elegir.</div>
+        <div class="campo-ejemplo">Ej: bi-flag, bi-trophy, bi-globe2</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Imagen <span class="campo-tipo">800x500 px recomendado</span></div>
+        <div class="campo-desc">Foto representativa del hito. Se muestra en la card del timeline.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Descripcion</div>
+        <div class="campo-desc">Texto narrativo del hito historico.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="sitios"><i class="bi bi-diagram-3 me-2"></i>Sitios</h2>
+    <p>Cada sitio representa una marca del ecosistema. El contenido se filtra por sitio activo.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Nombre <span class="campo-tipo">obligatorio</span></div>
+        <div class="campo-ejemplo">Ej: Cheerleader Classic, Dance Classic, Gym Classic</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Slug <span class="campo-tipo">obligatorio, unico</span></div>
+        <div class="campo-desc">Identificador corto. Se usa en la API: <code>/v1/{slug}/eventos</code></div>
+        <div class="campo-ejemplo">Ej: cheerleader, dance, gym</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Dominio</div>
+        <div class="campo-desc">Dominio del sitio web frontend.</div>
+        <div class="campo-ejemplo">Ej: cheerleaderclassic.cl, danceclassic.cl</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Logo <span class="campo-tipo">400x120 px recomendado</span></div>
+        <div class="campo-desc">Logo del sitio. Se usa en el portal corporativo.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Email</div>
+        <div class="campo-ejemplo">Ej: cheer@classic.cl</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Color primario</div>
+        <div class="campo-desc">Color de marca en formato hexadecimal. Se usa en badges del CMS.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="usuarios"><i class="bi bi-people me-2"></i>Usuarios</h2>
+    <p>Solo accesible por SUPERADMIN. Gestiona quienes pueden acceder al CMS.</p>
+
+    <div class="campo">
+        <div class="campo-nombre">Nombre / Apellido <span class="campo-tipo">obligatorio</span></div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Email <span class="campo-tipo">obligatorio, unico</span></div>
+        <div class="campo-desc">Se usa para iniciar sesion.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Contrasena</div>
+        <div class="campo-desc">Obligatoria al crear. Al editar, dejar vacio para no cambiar.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Rol</div>
+        <div class="campo-desc"><strong>SUPERADMIN:</strong> acceso total a todo. <strong>ADMIN:</strong> gestiona contenido de sitios asignados. <strong>EDITOR:</strong> solo edita contenido existente.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">Sitios asignados</div>
+        <div class="campo-desc">Checkboxes con los sitios a los que el usuario tiene acceso. SUPERADMIN tiene acceso a todos automaticamente.</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="api"><i class="bi bi-cloud me-2"></i>API REST</h2>
+    <p>Los sitios web frontend consumen los datos del CMS a traves de la API en <code>api.classic.cl</code>.</p>
+
+    <h3>Autenticacion</h3>
+    <p>Todas las peticiones requieren header <code>Authorization: Bearer {API_SECRET_KEY}</code></p>
+
+    <h3>Endpoints</h3>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/sitios</div>
+        <div class="campo-desc">Lista de sitios activos.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/eventos</div>
+        <div class="campo-desc">Eventos del sitio con meta datos y highlights.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/eventos/{slug}</div>
+        <div class="campo-desc">Detalle de un evento con precios incluidos.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/precios</div>
+        <div class="campo-desc">Precios del sitio. Filtrar por evento: <code>?evento={slug}</code></div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/alianzas</div>
+        <div class="campo-desc">Alianzas internacionales.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/galeria</div>
+        <div class="campo-desc">Albumes de galeria.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/documentos</div>
+        <div class="campo-desc">Documentos descargables.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/partners</div>
+        <div class="campo-desc">Partners/sponsors.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/contenido</div>
+        <div class="campo-desc">Contenido generico agrupado por seccion.</div>
+    </div>
+    <div class="campo">
+        <div class="campo-nombre">GET /v1/{sitio}/hitos</div>
+        <div class="campo-desc">Timeline de hitos.</div>
+    </div>
+
+    <p>Donde <code>{sitio}</code> es el slug: <code>cheerleader</code>, <code>dance</code>, <code>gym</code>.</p>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="cache"><i class="bi bi-arrow-repeat me-2"></i>Cache</h2>
+    <p>Los frontends cachean las respuestas de la API por 30 segundos (desarrollo) o 5 minutos (produccion). Si haces un cambio en el CMS y no se refleja inmediatamente, espera a que expire el cache.</p>
+    <div class="tip"><strong>Forzar limpieza:</strong> POST <code>/v1/cache/purgar</code> con Bearer token limpia el cache del lado del CMS.</div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <h2 id="archivos"><i class="bi bi-folder me-2"></i>Archivos subidos</h2>
+    <p>Todos los archivos subidos (imagenes, documentos, videos) se almacenan en el servidor del CMS en la ruta:</p>
+    <p><code>public/uploads/{slug-sitio}/{modulo}/</code></p>
+    <div class="campo-ejemplo">Ej: uploads/cheerleader/eventos/, uploads/dance/alianzas/</div>
+    <p>Los frontends acceden a estos archivos a traves de la URL completa del CMS (ej: <code>https://classic.cl/uploads/cheerleader/eventos/foto.webp</code>).</p>
+
+    <hr class="my-5">
+    <p class="text-muted text-center"><small>Classic CMS — Manual generado el <?= date('d/m/Y') ?></small></p>
+
+</div>
+
+</body>
+</html>
