@@ -819,7 +819,7 @@
                 <img src="/assets/img/ClassicEventosLogoBlanco.webp" alt="Classic Eventos" style="height:28px;opacity:.5;">
             </div>
             <div class="col-md-4 text-center my-2 my-md-0">
-                &copy; <?= date('Y') ?> Classic Producciones
+                &copy; 2006 - <?= date('Y') ?> Classic Producciones
             </div>
             <div class="col-md-4 text-md-end d-flex justify-content-md-end justify-content-center gap-2">
                 <a href="https://www.instagram.com/classiceventos" class="social-link"><i class="bi bi-instagram"></i></a>

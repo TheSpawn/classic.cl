@@ -494,7 +494,7 @@
 <footer class="footer">
     <div class="footer-inner">
         <img src="/assets/img/ClassicEventosLogoBlanco.webp" alt="Classic" class="footer-logo">
-        <span class="footer-copy">&copy; <?= date('Y') ?> Classic Producciones</span>
+        <span class="footer-copy">&copy; 2006 - <?= date('Y') ?> Classic Producciones</span>
         <div class="social-links">
             <a href="https://www.instagram.com/classic_producciones" class="social-link" target="_blank"><i class="bi bi-instagram"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61577511881405" class="social-link" target="_blank"><i class="bi bi-facebook"></i></a>
